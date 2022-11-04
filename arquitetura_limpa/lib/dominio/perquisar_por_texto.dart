@@ -18,6 +18,9 @@ class PesquisaPorTextoImpl implements PesquisaPorTexto {
   @override
   Future<Either<ExceptionPesquisa, List<ResultadoPesquisa>>> call(
       String pesquisarTexto) async {
+    if (pesquisarTexto == null || pesquisarTexto.isEmpty) {
+      return Left(TextoInvalido());
+    }
     return repositorioPesquisa.pesquisa(pesquisarTexto);
   }
 }
